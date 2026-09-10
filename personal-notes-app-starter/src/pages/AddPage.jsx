@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { addNote } from '../utils/local-data';
+import { addNote } from '../utils/network-data';
 
 function AddPage() {
     const [title, setTitle] = useState('');
@@ -15,9 +15,9 @@ function AddPage() {
         setBody(event.target.innerHTML);
     };
 
-    const onSubmitEventHandler = (event) => {
+    const onSubmitEventHandler = async (event) => {
         event.preventDefault();
-        addNote({ title, body });
+        await addNote({ title, body });
         navigate('/');
     };
 
@@ -39,7 +39,7 @@ function AddPage() {
                 />
                 <div className="add-new-page__action">
                     <button className="action" type="submit" title="Simpan">
-                        ✓ Simpan
+                        ✓
                     </button>
                 </div>
             </form>
