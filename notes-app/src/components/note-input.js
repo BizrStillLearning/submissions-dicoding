@@ -1,65 +1,70 @@
 class NoteInput extends HTMLElement {
-    constructor() {
-        super();
-        this.attachShadow({ mode: 'open' });
-    }
+  constructor() {
+    super();
+    this.attachShadow({ mode: 'open' });
+  }
 
-    connectedCallback() {
-        this.render();
-        this.setupForm();
-    }
+  connectedCallback() {
+    this.render();
+    this.setupForm();
+  }
 
-    setupForm() {
-        const form = this.shadowRoot.querySelector('form');
-        const titleInput = this.shadowRoot.querySelector('#title');
-        const bodyInput = this.shadowRoot.querySelector('#body');
-        const titleError = this.shadowRoot.querySelector('#title-error');
-        const bodyError = this.shadowRoot.querySelector('#body-error');
+  setupForm() {
+    const form = this.shadowRoot.querySelector('form');
+    const titleInput = this.shadowRoot.querySelector('#title');
+    const bodyInput = this.shadowRoot.querySelector('#body');
+    const titleError = this.shadowRoot.querySelector('#title-error');
+    const bodyError = this.shadowRoot.querySelector('#body-error');
 
-        titleInput.addEventListener('input', () => {
-            if (titleInput.value.trim().length < 3) {
-                titleError.textContent = 'Judul minimal 3 karakter.';
-                titleError.style.display = 'block';
-            } else {
-                titleError.style.display = 'none';
-            }
-        });
+    titleInput.addEventListener('input', () => {
+      if (titleInput.value.trim().length < 3) {
+        titleError.textContent = 'Judul minimal 3 karakter.';
+        titleError.style.display = 'block';
+      } else {
+        titleError.style.display = 'none';
+      }
+    });
 
-        bodyInput.addEventListener('input', () => {
-            if (bodyInput.value.trim().length < 5) {
-                bodyError.textContent = 'Isi catatan minimal 5 karakter.';
-                bodyError.style.display = 'block';
-            } else {
-                bodyError.style.display = 'none';
-            }
-        });
+    bodyInput.addEventListener('input', () => {
+      if (bodyInput.value.trim().length < 5) {
+        bodyError.textContent = 'Isi catatan minimal 5 karakter.';
+        bodyError.style.display = 'block';
+      } else {
+        bodyError.style.display = 'none';
+      }
+    });
 
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
 
-            if (titleInput.value.trim().length >= 3 && bodyInput.value.trim().length >= 5) {
-                const newNote = {
-                    id: `notes-${Math.random().toString(36).substr(2, 9)}`,
-                    title: titleInput.value,
-                    body: bodyInput.value,
-                    createdAt: new Date().toISOString(),
-                    archived: false,
-                };
+      if (
+        titleInput.value.trim().length >= 3 &&
+        bodyInput.value.trim().length >= 5
+      ) {
+        const newNote = {
+          id: `notes-${Math.random().toString(36).substr(2, 9)}`,
+          title: titleInput.value,
+          body: bodyInput.value,
+          createdAt: new Date().toISOString(),
+          archived: false,
+        };
 
-                this.dispatchEvent(new CustomEvent('note-added', {
-                    detail: newNote,
-                    bubbles: true
-                }));
+        this.dispatchEvent(
+          new CustomEvent('note-added', {
+            detail: newNote,
+            bubbles: true,
+          })
+        );
 
-                form.reset();
-            } else {
-                alert('Pastikan semua form diisi dengan benar sebelum submit.');
-            }
-        });
-    }
+        form.reset();
+      } else {
+        alert('Pastikan semua form diisi dengan benar sebelum submit.');
+      }
+    });
+  }
 
-    render() {
-        this.shadowRoot.innerHTML = `
+  render() {
+    this.shadowRoot.innerHTML = `
       <style>
         .form-container {
           background: #ffffff;
@@ -133,7 +138,7 @@ class NoteInput extends HTMLElement {
         </form>
       </div>
     `;
-    }
+  }
 }
 
 customElements.define('note-input', NoteInput);

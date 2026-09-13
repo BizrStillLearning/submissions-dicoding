@@ -3,18 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dicoding Notes App</title>
-    <link rel="stylesheet" href="src/style.css">
+    <title>Dicoding Notes App API</title>
 </head>
 <body>
-
-<app-bar app-title="MyAwesome Notes"></app-bar>
+<app-bar app-title="Notes API App"></app-bar>
+<loading-indicator></loading-indicator>
 
 <main>
     <note-input></note-input>
-    <div id="note-list"></div>
-</main>
 
-<script type="module" src="src/main.js"></script>
+    <h2>Catatan Aktif</h2>
+    <div id="active-list" class="grid-list"></div>
+
+    <hr style="margin: 2rem 0;">
+
+    <h2>Catatan Arsip</h2>
+    <div id="archived-list" class="grid-list"></div>
+</main>
 </body>
 </html>

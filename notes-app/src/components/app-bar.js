@@ -1,16 +1,16 @@
 class AppBar extends HTMLElement {
-    constructor() {
-        super();
-        this.attachShadow({ mode: 'open' });
-    }
+  constructor() {
+    super();
+    this.attachShadow({ mode: 'open' });
+  }
 
-    connectedCallback() {
-        this.title = this.getAttribute('app-title') || 'Notes App';
-        this.render();
-    }
+  connectedCallback() {
+    this.title = this.getAttribute('app-title') || 'Notes App';
+    this.render();
+  }
 
-    render() {
-        this.shadowRoot.innerHTML = `
+  render() {
+    this.shadowRoot.innerHTML = `
       <style>
         :host {
           display: block;
@@ -28,7 +28,7 @@ class AppBar extends HTMLElement {
       </style>
       <h1>${this.title}</h1>
     `;
-    }
+  }
 }
 
 customElements.define('app-bar', AppBar);

@@ -1,23 +1,7 @@
-body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    background-color: #f8f9fa;
-    color: #333;
-}
-
-main {
-    max-width: 1000px;
-    margin: 2rem auto;
-    padding: 0 1.5rem;
-}
-
-#note-list {
+body { font-family: sans-serif; background: #f4f4f9; margin: 0; padding: 0; }
+main { max-width: 1000px; margin: 2rem auto; padding: 0 1rem; }
+.grid-list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 1.5rem;
-}
-
-* {
-    box-sizing: border-box;
 }
